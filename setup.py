@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="YeatBigTonka",  # Название библиотеки
-    version="0.1.0",    # Версия библиотеки
+    version="0.3.0",    # Версия библиотеки
     author="Kirill Sidorov", # Ваше имя
     author_email="grias0001@gmail.com",
     description="A simple example library",
