@@ -1,5 +1,7 @@
 # pip install nltk gensim scikit-learn transformers sentencepiece
 
+# Прочитайте текстовый файл: (Стругацкие) Тестовая_2 вместе.txt. Проведите векторизацию текста используя различные методы, в том числе предобученные модели, word2vec, Skip-Gram
+
 import re
 import nltk
 import gensim
