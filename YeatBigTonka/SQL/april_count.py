@@ -2,19 +2,31 @@
 """
 
 def sql():
-    a = """
-        SELECT
-            town,
-            COUNT(CASE WHEN town = t.town_from THEN 1 END) AS cnt_out,
-            COUNT(CASE WHEN town = t.town_to THEN 1 END) AS cnt_in
-        FROM (
-            SELECT town_from AS town FROM Trip
-            UNION
-            SELECT town_to FROM Trip
-        ) AS all_towns
-        JOIN Trip t ON t.town_from = all_towns.town OR t.town_to = all_towns.town
-        JOIN Pass_in_trip pt ON t.trip_no = pt.trip_no
-        WHERE pt.date_trip BETWEEN '2025-04-01' AND '2025-04-30'
-        GROUP BY town;
+    a = """WITH t1 AS (
+	SELECT Trip.trip_no,
+		Trip.town_from,
+		Trip.town_to,
+		date_trip
+	FROM Trip
+		LEFT JOIN Pass_in_trip Pit ON Trip.trip_no = Pit.trip_no
+	WHERE date_trip BETWEEN '2025-04-01' AND '2025-04-30'
+	GROUP BY Trip.trip_no,
+		Trip.town_from,
+		Trip.town_to,
+		date_trip
+),
+t2 AS (
+	SELECT t1.town_from as tw,
+		COUNT(t1.town_from) as ct_out
+	FROM t1
+	GROUP BY t1.town_from
+),
+t3 AS (SELECT t1.town_to as tw,
+              COUNT(t1.town_to) as ct_in
+       FROM t1
+       GROUP BY t1.town_to)
+
+SELECT t2.tw, t2.ct_out, t3.ct_in FROM t2
+join t3 on t2.tw = t3.tw
     """
 

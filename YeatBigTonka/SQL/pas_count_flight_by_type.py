@@ -5,13 +5,12 @@
 
 def sql():
     a = """
-        SELECT
-            p.name,
-            t.plane,
-            COUNT(*) AS cnt_trip
-        FROM Passenger p
-        JOIN Pass_in_trip pt ON p.ID_psg = pt.ID_psg
-        JOIN Trip t ON pt.trip_no = t.trip_no
-        GROUP BY p.ID_psg, p.name, t.plane
-        ORDER BY p.name, cnt_trip DESC;
+       with t1 as (SELECT Passenger.ID_psg, Passenger.name, Pass_in_trip.trip_no, Trip.plane
+            FROM Passenger
+                     join Pass_in_trip using (ID_psg)
+                     join Trip using (trip_no)
+            )
+SELECT t1.name, t1.plane, COUNT(t1.trip_no) FROM t1
+GROUP BY t1.ID_psg, t1.plane
+order by name
     """

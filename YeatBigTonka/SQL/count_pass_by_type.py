@@ -4,12 +4,8 @@
 
 def sql():
     a = """
-        SELECT
-            c.name AS name,
-            t.plane AS plane,
-            COUNT(*) AS cnt_pass
-        FROM Company c
-        JOIN Trip t ON c.ID_comp = t.ID_comp
-        JOIN Pass_in_trip pt ON t.trip_no = pt.trip_no
-        GROUP BY c.name, t.plane;
+        SELECT Company.name,Trip.plane, COUNT(Pass_in_trip.ID_psg) From Company
+join Trip on Company.ID_comp = Trip.ID_comp
+join Pass_in_trip on Trip.trip_no = Pass_in_trip.trip_no
+GROUP BY Trip.plane, Company.name
     """
