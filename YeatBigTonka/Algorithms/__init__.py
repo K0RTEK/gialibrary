@@ -16,5 +16,7 @@ from .remove_node_at_index import remove_node_at_index
 # Напишите программу, которая запрашивает у пользователя строку и выводит на экран долю гласных букв в этой строке.
 from .vowel_fraction import vowel_fraction
 
+from.bubble_sort import bubble_sort
+
 __add__ = ['convert_binary_to_decimal_and_hex', 'insert_into_heap', 'merge_sort', 'parse_complex',
-           'remove_node_at_index', 'vowel_fraction']
+           'remove_node_at_index', 'vowel_fraction', 'bubble_sort']
