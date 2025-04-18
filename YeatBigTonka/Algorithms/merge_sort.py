@@ -1,4 +1,3 @@
-#Задание 9 сортировка слиянием
 def merge_sort(a):
     if len(a) <= 1:
         return a
