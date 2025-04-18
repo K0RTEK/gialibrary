@@ -1,19 +1,12 @@
+#Задание 4
+# Напишите программу, которая запрашивает у пользователя строку и выводит на экран долю гласных букв в этой строке.
 def vowel_fraction(input_str: str) -> float:
-    """Возвращает долю (процент) гласных букв в строке относительно общей длины строки."""
-    # Определим множество гласных. Если нужно для русского, поменяйте набор.
-    vowels = set("aeiouAEIOU")  # Для английского
-    # Если для русского языка, используйте, например:
+    vowels = set("aeiouAEIOU")
     # vowels = set("аеёиоуыэюяАЕЁИОУЫЭЮЯ")
-
     total_length = len(input_str)
-
-    # Если строка пустая, доля гласных равна 0
     if total_length == 0:
         return 0.0
-
-    # Считаем количество символов, которые являются гласными
     vowel_count = sum(1 for ch in input_str if ch in vowels)
-
-    # Возвращаем долю гласных, умноженную на 100 для процента или оставляем в виде десятичной дроби
-    return vowel_count / total_length  # Доля (от 0 до 1)
-    # return (vowel_count / total_length) * 100  # Процент
+    return (vowel_count / total_length) * 100  # Процент
+result = vowel_fraction("aeaaa")
+print(result)
